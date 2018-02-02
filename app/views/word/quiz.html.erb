@@ -1,1 +1,19 @@
-huy
+
+<div id="answer" style="display: none">
+    <h2><%= @word.rus %></h2>
+</div>
+
+<%= form_tag("/", method: "post", autocomplete: "off") do %>
+    <div class="form-group">
+        <h2 class="text-center"><%= @word.eng %></h2>
+        <%= text_field_tag :guess, '', :class => "form-control" %>
+    </div>
+    <%= hidden_field_tag(:word_id,@word.id) %>
+    <div class="form-group text-center">
+        <%= submit_tag "Check", :class => "btn btn-info"  %>
+    </div>
+<% end %>
+
+<button id='giveup' class="btn btn-danger" onclick="$('#answer').toggle();">
+    Give Up
+</button>
