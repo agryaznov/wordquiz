@@ -1,24 +1,16 @@
-# README
+# Word Quiz
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Simple app to build and perform vocabulary quiz based on your own .csv dict
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Loading word list
+Prepare your own *words.csv*
+```csv
+eng,rus
+endorsement,поддержка
+discord,диссонанс
+cease,прекращени
+```
+Then put it in the app root dir and run load task
+```
+$>rake words:load
+```
