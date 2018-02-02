@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180202142746) do
+ActiveRecord::Schema.define(version: 20180202202337) do
+
+  create_table "tries", force: :cascade do |t|
+    t.string "result"
+    t.integer "word_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["word_id"], name: "index_tries_on_word_id"
+  end
 
   create_table "words", force: :cascade do |t|
     t.string "eng"
