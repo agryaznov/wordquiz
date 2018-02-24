@@ -17,7 +17,11 @@ class WordController < ApplicationController
       end
 
     else
-      @word = Word.order("RANDOM()").first
+      # @word = Word.order("RANDOM()").first
+      # take the less tried word
+
+      a = Word.all.sort {|x,y| x.tries.size <=> y.tries.size}
+      @word = a.first
     end
 
     respond_to do |format|
