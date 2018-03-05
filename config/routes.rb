@@ -3,4 +3,6 @@ Rails.application.routes.draw do
   root :to => 'word#quiz'
 
   post '/', :to => 'word#quiz'
+
+  get '/stat', :to => 'stat#graph'
 end

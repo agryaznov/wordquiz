@@ -1,0 +1,44 @@
+<ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#giveups">Give Ups</a></li>
+    <li><a data-toggle="tab" href="#fails">Fails</a></li>
+    <li><a data-toggle="tab" href="#tries">Tries</a></li>
+    <li><a data-toggle="tab" href="#success">Successes</a></li>
+</ul>
+
+<div class="tab-content">
+    <div id="giveups" class="tab-pane fade in active">
+        <%= bar_chart Try.where(result: 'giveup').group(:word).order('count_id desc').count('id').first(10).map{|x,y| [x.eng,y]}.to_h,
+                      title: 'Top Give Ups',
+                      colors: ['#e43232']
+        %>
+    </div>
+    <div id="giveups1" class="tab-pane fade">
+        <%= bar_chart Try.where(result: 'giveup').group(:word).order('count_id desc').count('id').first(10).map{|x,y| [x.eng,y]}.to_h,
+                      title: 'Top Give Ups',
+                      colors: ['#e43232']
+        %>
+    </div>
+    <div id="fails" class="tab-pane fade">
+        <%= bar_chart Try.where(result: 'fail').group(:word).order('count_id desc').count('id').first(10).map{|x,y| [x.eng,y]}.to_h,
+                      title: 'Top Failures',
+                      colors: ['#e43232']
+        %>
+    </div>
+    <div id="tries" class="tab-pane fade">
+        <%= bar_chart Try.group(:word).order('count_id desc').count('id').first(10).map{|x,y| [x.eng,y]}.to_h,
+                      title: 'Top Tries'
+        %>
+    </div>
+    <div id="success" class="tab-pane fade">
+        <%= bar_chart Try.where(result: 'success').group(:word).order('count_id desc').count('id').first(10).map{|x,y| [x.eng,y]}.to_h,
+                      title: 'Top Success',
+                      colors: ['#0ba839']
+        %>
+    </div>
+
+</div>
+
+<div>
+    <a class="btn btn-default" href="/">Quiz</a>
+</div>
+

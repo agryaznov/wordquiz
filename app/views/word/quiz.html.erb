@@ -1,5 +1,3 @@
-
-
 <%= form_tag("/", method: "post", autocomplete: "off") do %>
     <div class="form-group">
         <h2 class="text-center"><%= @word.eng %></h2>
@@ -16,6 +14,11 @@
         <a style="display: none;" class="btn btn-primary check" href="/">Next</a>
     </div>
 <% end %>
+
+<div>
+    <a class="btn btn-default" href="/stat">Stat</a>
+</div>
+
 
 <script>
     $(document).ready(function(){
