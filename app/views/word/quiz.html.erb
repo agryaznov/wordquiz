@@ -1,4 +1,13 @@
 <%= form_tag("/", method: "post", autocomplete: "off") do %>
+    <div>
+        <% @hundreds.times do |i| %>
+            <%= label_tag "hundred_#{i}", class: "radio-inline" do %>
+            <%= radio_button_tag 'hundred', i, @checked.to_i == i %>
+                <%= i + 1 %>00
+            <% end %>
+        <% end %>
+    </div>
+
     <div class="form-group">
         <h2 class="text-center"><%= @word.eng %></h2>
         <%= text_field_tag :guess, '', :class => "form-control check" %>
@@ -11,7 +20,7 @@
     <div class="form-group text-center">
         <button type='button' id='giveup' class="btn btn-danger check">Give Up</button>
         <%= submit_tag "Check", :class => "btn btn-success check"  %>
-        <a style="display: none;" class="btn btn-primary check" href="/">Next</a>
+        <a id='next' style="display: none;" class="btn btn-primary check" href="/">Next</a>
     </div>
 <% end %>
 
@@ -31,7 +40,7 @@
                     },
                     function(){
                         $('.check').toggle();
-                        this.toggle();
+                        $('#next').attr('href','/?hundred='+$('input[name="hundred"]:checked').val());
                     });
         });
     });
