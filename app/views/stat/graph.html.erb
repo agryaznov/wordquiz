@@ -1,22 +1,22 @@
 <ul class="nav nav-tabs">
-    <li class="active"><a data-toggle="tab" href="#giveups">Give Ups</a></li>
-    <li><a data-toggle="tab" href="#fails">Fails</a></li>
-    <li><a data-toggle="tab" href="#tries">Tries</a></li>
-    <li><a data-toggle="tab" href="#success">Wins</a></li>
-    <li><a data-toggle="tab" href="#daily">Daily</a></li>
+    <li class="active"><a data-toggle="tab" href="#giveups">Givup</a></li>
+    <li><a data-toggle="tab" href="#fails">Fail</a></li>
+    <li><a data-toggle="tab" href="#tries">Try</a></li>
+    <li><a data-toggle="tab" href="#success">Win</a></li>
+    <li><a data-toggle="tab" href="#daily">Day</a></li>
 </ul>
 
 <div class="tab-content">
     <div id="daily" class="tab-pane fade">
         <%= line_chart Try.where("created_at > ?",1.week.ago).group(:result).group_by_day(:created_at).count('id'),
                       title: 'Daily Work',
-                      colors: ['#e43232', '#f20e4e', '#0ba839']
+                      colors: ['#e43232', '#0e46e4', '#0ba839']
         %>
     </div>
     <div id="giveups" class="tab-pane fade in active">
         <%= bar_chart Try.where(result: 'giveup').group(:word).order('count_id desc').count('id').first(10).map{|x,y| [x.eng,y]}.to_h,
                       title: 'Top Give Ups',
-                      colors: ['#f20e4e']
+                      colors: ['#e43232']
         %>
     </div>
     <div id="fails" class="tab-pane fade">
