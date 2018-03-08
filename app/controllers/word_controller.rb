@@ -12,10 +12,10 @@ class WordController < ApplicationController
           @word.log(:success)
           flash[:success] = 'Right' # quite right!
           # @word = Word.order("RANDOM()").first
-          @word = Word.first(100*(@checked.to_i+1)).last(100).sample
+          @word = next_word @checked
         else
           @word.log(:fail)
-          flash[:danger] = 'Nope' # Not quite right!
+          flash[:danger] = 'Wrong' # Not quite right!
         end
       end
 
@@ -24,12 +24,18 @@ class WordController < ApplicationController
       # take the less tried word
 
       # a = Word.all.sort {|x,y| x.tries.size <=> y.tries.size}
-      @word = Word.first(100*(@checked.to_i+1)).last(100).sample
+      @word = next_word @checked
     end
 
     respond_to do |format|
       format.html
       format.js
     end
+  end
+
+  private
+
+  def next_word checked
+    Word.first(100*(@checked.to_i+1)).last(100).sort_by(&:success_rate).first(20).sample
   end
 end

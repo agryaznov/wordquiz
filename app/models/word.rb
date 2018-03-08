@@ -8,5 +8,4 @@ class Word < ApplicationRecord
   def log(result)
     tries.create(result: result)
   end
-
 end
