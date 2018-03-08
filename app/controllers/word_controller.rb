@@ -36,6 +36,7 @@ class WordController < ApplicationController
   private
 
   def next_word checked
+    # TODO: if success rate is equal for all (1.00) then random on all, not 'best 20'
     Word.first(100*(@checked.to_i+1)).last(100).sort_by(&:success_rate).first(20).sample
   end
 end
