@@ -32,6 +32,9 @@ gem 'jbuilder', '~> 2.5'
 
 # to avoid vulnerability CVE-2020-7595
 gem "nokogiri", ">= 1.10.8"
+gem "rubyzip", ">= 1.3.0"
+gem "sprockets", ">= 3.7.2"
+
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
